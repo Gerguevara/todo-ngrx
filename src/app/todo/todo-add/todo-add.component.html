@@ -1,4 +1,10 @@
 <header class="header">
   <h1>todos</h1>
-  <input class="new-todo" placeholder="What needs to be done?" autofocus>
+  <input
+  autofocus
+  class="new-todo"
+  [formControl]="txtInput" name="txtInput"
+  placeholder="What needs to be done?"
+  (keyup.enter)="agregarTodo()"
+  >
 </header>

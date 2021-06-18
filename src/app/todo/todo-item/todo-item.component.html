@@ -1,8 +1,10 @@
-<li class="completed">
+<li [ngClass]="{'completed': todo.completado, 'editing': editing}"
+
+>
   <div class="view">
-    <input class="toggle" type="checkbox" checked>
-    <label>Taste JavaScript</label>
+    <input class="toggle" type="checkbox" [formControl]="checkBoxCompletado" #editarTodo>
+    <label (click)="activateEditionMode()">{{todo.texto}}</label>
     <button class="destroy"></button>
   </div>
-  <input class="edit" value="Create a TodoMVC template">
+  <input class="edit" value="Create a TodoMVC template" [formControl]="txtInput" (blur)="desActivateEditionMode()">
 </li>
