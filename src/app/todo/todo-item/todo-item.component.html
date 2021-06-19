@@ -3,8 +3,10 @@
 >
   <div class="view">
     <input class="toggle" type="checkbox" [formControl]="checkBoxCompletado" #editarTodo>
-    <label (click)="activateEditionMode()">{{todo.texto}}</label>
-    <button class="destroy"></button>
+    <label (click)="activateEditionMode()"    >{{todo.texto}}</label>
+    <button class="destroy" (click)="removeTodo()"></button>
   </div>
-  <input class="edit" value="Create a TodoMVC template" [formControl]="txtInput" (blur)="desActivateEditionMode()">
+  <input class="edit" value="Create a TodoMVC template" [formControl]="txtInput"
+  (keyup.enter)="desActivateEditionMode()"
+  (blur)="desActivateEditionMode()">
 </li>

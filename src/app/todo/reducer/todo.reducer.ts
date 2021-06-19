@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { Todo } from 'src/app/models/todo.model';
-import { crearTodo, setEstadoCompletado } from '../todo-actions/todo.actions';
+import { crearTodo, setEstadoCompletado, editarTodo, borrarTodo } from '../todo-actions/todo.actions';
 
 
 export const estadoInicial: Todo[] = [
@@ -19,10 +19,10 @@ export const estadoInicial: Todo[] = [
 
 // lo que hara, nota en este caso se untiliza el pronp {texto} que es un campo que llevan los reducer, pero es opcional
 const _todoReducer = createReducer(
+
+
   estadoInicial,
   on(crearTodo, (state, { texto }) => [...state, new Todo(texto)]),
-
-
 
   // este reducer recibe el id, mapea el arreglo lo buscando, cuando lo tiene crea una copia de objeto y lo manda
   // luego manda una copia del nuevo arreglo
@@ -40,8 +40,31 @@ const _todoReducer = createReducer(
 
     }))
   }),
-);
 
+
+  on(editarTodo, (state, { id, texto }) => {
+    return state.map((todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          texto: texto
+        }
+      }
+      else {
+        return todo
+      }
+
+    }))
+  }),
+
+
+  on(borrarTodo, (state, { id }) => {
+    return state.filter((todo => todo.id != id))
+    })
+
+
+
+  );// reducer fin
 
 //se exporta la funcion reducer
 export function todoReducer(state: Todo[] | undefined, action: Action) {

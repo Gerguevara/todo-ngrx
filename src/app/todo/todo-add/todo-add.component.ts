@@ -30,7 +30,7 @@ this.txtInput = new FormControl('', [Validators.required, Validators.minLength(3
       return;
     }
 
-     this.store.dispatch(crearTodo(this.txtInput.value))
+     this.store.dispatch(crearTodo({texto:this.txtInput.value}))
     //  this.txtInput.setValue('')
     this.txtInput.reset();
   }

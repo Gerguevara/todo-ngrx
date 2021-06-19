@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.state.global';
 import { Todo } from 'src/app/models/todo.model';
-import { setEstadoCompletado } from '../todo-actions/todo.actions';
+import { borrarTodo, editarTodo, setEstadoCompletado } from '../todo-actions/todo.actions';
 
 @Component({
   selector: 'app-todo-item',
@@ -25,16 +25,10 @@ editing = false;
     this.checkBoxCompletado = new FormControl(this.todo.completado);
     this.txtInput = new FormControl(this.todo.texto, [Validators.required, Validators.minLength(3)]);
 
-
     this.checkBoxCompletado.valueChanges.subscribe(value =>  {
-
       // se dispara el dispatch del store pasando la accion el parametro que pide la
       this.store.dispatch(setEstadoCompletado({id: this.todo.id}))
     });
-
-
-
-
   }
 
 
@@ -45,10 +39,20 @@ editing = false;
     },100)
   }
 
-  desActivateEditionMode(){
-    this.editing = false;
-    console.log('se diasparo el blur');
 
+  desActivateEditionMode(){
+    if (this.txtInput.invalid || this.txtInput.value === this.todo.texto) {
+      this.editing = false;
+      return;
+    }
+    this.editing = false;
+     this.store.dispatch(editarTodo({id:this.todo.id, texto:this.txtInput.value}))
   }
+
+
+  removeTodo(){
+    this.store.dispatch(borrarTodo({id: this.todo.id}))
+  }
+
 
 }
