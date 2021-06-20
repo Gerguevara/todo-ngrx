@@ -1,7 +1,7 @@
 import { setFiltro } from './../todo-actions/filtro.todo.actions';
 import { Action, createReducer, on } from '@ngrx/store';
 
-export const initialState = 'todos';
+export const initialState = 'todo';
 
 const _filtroReducer = createReducer(
   initialState,

@@ -12,14 +12,24 @@ import { Todo } from 'src/app/models/todo.model';
 })
 export class TodoListComponent implements OnInit {
 
-  todos:Todo [] = []
+  todos: Todo[] = []
+  filtrosValidos = ['todos', 'completado',  'pendientes']
+
+  filtroActual!: string;
 
   constructor( private store : Store<AppState>) { }
 
   ngOnInit(): void {
 
     // select toma del store solo la  propiedad que le interesa, en este caso esta declarada en la interfaz global
-    this.store.select('todos').subscribe(todos => this.todos = todos);
+    // this.store.select('todos').subscribe(todos => this.todos = todos);
+    this.store.subscribe(state => {
+
+      this.todos = state.todos
+      this.filtroActual = state.filtro
+        console.log("cambio el filtro", this.filtroActual);
+
+    });
 
   }
 

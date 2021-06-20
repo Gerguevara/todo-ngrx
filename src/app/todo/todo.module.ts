@@ -1,3 +1,4 @@
+import { StateFilterPipe } from './../pipes/state-filter.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoAddComponent } from './todo-add/todo-add.component';
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         TodoItemComponent,
         TodoListComponent,
         TodoPageComponent,
+        StateFilterPipe
 
   ],
   exports:[

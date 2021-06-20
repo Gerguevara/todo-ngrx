@@ -1,3 +1,4 @@
+import { borrarTodo, borrarTodosCompletados } from './../todo-actions/todo.actions';
 import { setFiltro } from './../todo-actions/filtro.todo.actions';
 import { AppState } from 'src/app/app.state.global';
 import { Store } from '@ngrx/store';
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoFooterComponent implements OnInit {
 
-  filtroActual: string = 'todos'
+  filtroActual: string = ''
   pendientes = 0;
   filtros  = ['completados','pendientes', 'todos']
   constructor(private store: Store <AppState>) { }
@@ -29,6 +30,10 @@ export class TodoFooterComponent implements OnInit {
 
   aplicarFiltro(filtro: string) {
     this.store.dispatch(setFiltro({filtro:filtro}))
+  }
+
+  borrarTodoCompletado() {
+    this.store.dispatch(borrarTodosCompletados())
   }
 
 }

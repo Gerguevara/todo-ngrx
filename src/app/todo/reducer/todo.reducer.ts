@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { Todo } from 'src/app/models/todo.model';
-import { crearTodo, setEstadoCompletado, editarTodo, borrarTodo } from '../todo-actions/todo.actions';
+import { crearTodo, setEstadoCompletado, editarTodo, borrarTodo, borrarTodosCompletados } from '../todo-actions/todo.actions';
 
 
 export const estadoInicial: Todo[] = [
@@ -60,9 +60,13 @@ const _todoReducer = createReducer(
 
   on(borrarTodo, (state, { id }) => {
     return state.filter((todo => todo.id != id))
-    })
+    }),
 
 
+
+    on(borrarTodosCompletados, (state) => {
+      return state.filter((todo => !todo.completado))
+      })
 
   );// reducer fin
 

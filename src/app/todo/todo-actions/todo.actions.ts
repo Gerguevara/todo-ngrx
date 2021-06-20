@@ -7,4 +7,6 @@ export const setEstadoCompletado = createAction('[TODO] Crompletar todo', props<
 
 export const editarTodo = createAction('[TODO] editar todo', props<{id: number, texto: string}>());
 
-export const borrarTodo = createAction('[TODO] borrar todo', props<{id: number}>());
+export const borrarTodo = createAction('[TODO] borrar todo', props<{ id: number }>());
+
+export const borrarTodosCompletados = createAction('[TODO] borrar todo completados');

@@ -15,11 +15,13 @@ import { todoReducer } from './todo/reducer/todo.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { appReducers } from './todo/index.reducers';
+// import { StateFilterPipe } from './pipes/state-filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterRightsComponent
+    FooterRightsComponent,
+    // StateFilterPipe
   ],
   imports: [
     BrowserModule,
