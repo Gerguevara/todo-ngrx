@@ -14,6 +14,7 @@ import { todoReducer } from './todo/reducer/todo.reducer';
 //devtools redux
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { appReducers } from './todo/index.reducers';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     // NG RX
     TodoModule,
-    StoreModule.forRoot({ todos: todoReducer }),
+    StoreModule.forRoot(appReducers),
     // para devtools
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
